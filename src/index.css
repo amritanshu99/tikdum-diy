@@ -1,13 +1,219 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Tailwind base if you use it, else remove these three lines */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================= Global: lock browser scroll ================= */
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;              /* ← no browser vertical scrollbar */
+  overscroll-behavior: none;     /* ← no bounce on mobile */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* If you need a scrollable area inside a page, give it overflow:auto on that element (e.g., your <main>). */
+
+/* ================= Paper backdrop ================= */
+.bg-paper{
+  background:
+    radial-gradient(closest-side at 30% 20%, rgba(0,0,0,.02), transparent 60%),
+    radial-gradient(closest-side at 70% 80%, rgba(0,0,0,.02), transparent 60%),
+    #fcfcfa;
+}
+@media (prefers-color-scheme: dark){
+  .bg-paper{
+    background: linear-gradient(180deg, #0b0f19, #0e1422);
+  }
+}
+
+.paper-grain{
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'>\
+<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0 .06 0'/></feComponentTransfer></filter>\
+<rect width='48' height='48' filter='url(%23n)' fill='black' opacity='.35'/></svg>");
+  background-size: 240px 240px;
+  opacity:.25;
+  mix-blend-mode:multiply;
+}
+
+/* ================= Animated stroke drawing ================= */
+.strokeGroup .strokePath{
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 1600;
+  animation: draw 1.8s ease-in forwards;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,.12));
+}
+.strokeGroup .bristle{
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 1600;
+  animation: draw 1.8s ease-in forwards;
+}
+
+/* ---------- Responsive stroke widths (no JSX changes needed) ---------- */
+.stroke-1 .strokePath { stroke-width: clamp(28px, 6vw, 64px); }
+.stroke-1 .bristle   { stroke-width: calc(clamp(28px, 6vw, 64px) + 8px); }
+
+.stroke-2 .strokePath { stroke-width: clamp(34px, 7.2vw, 78px); }
+.stroke-2 .bristle   { stroke-width: calc(clamp(34px, 7.2vw, 78px) + 8px); }
+
+.stroke-3 .strokePath { stroke-width: clamp(22px, 5vw, 56px); }
+.stroke-3 .bristle   { stroke-width: calc(clamp(22px, 5vw, 56px) + 8px); }
+
+/* Stagger strokes */
+.stroke-1 .strokePath, .stroke-1 .bristle { animation-delay: .0s; }
+.stroke-2 .strokePath, .stroke-2 .bristle { animation-delay: .45s; }
+.stroke-3 .strokePath, .stroke-3 .bristle { animation-delay: .9s; }
+
+@keyframes draw{
+  0%   { stroke-dashoffset: 1600; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* ================= Brush head follows the active stroke ================= */
+.brushHead{
+  position:absolute; width:84px; height:32px; pointer-events:none;
+  animation: follow 1.8s ease-in infinite;
+  animation-delay: .0s;
+}
+.stroke-2 ~ .brushHead{ animation-delay: .45s; }
+.stroke-3 ~ .brushHead{ animation-delay: .9s; }
+
+/* Move across SVG */
+@keyframes follow{
+  0%{ transform: translate(6%, 42%); }
+  30%{ transform: translate(38%, 34%) rotate(-4deg); }
+  60%{ transform: translate(70%, 28%) rotate(2deg); }
+  100%{ transform: translate(94%, 22%) rotate(-2deg); }
+}
+
+/* Brush visual */
+.brushHead .handle{
+  position:absolute; right:0; top:10px; width:56px; height:8px; border-radius:9999px;
+  background: linear-gradient(180deg, #7c3e0a, #9a5417);
+  box-shadow: inset 0 0 2px rgba(255,255,255,.35);
+}
+.brushHead .ferrule{
+  position:absolute; left:18px; top:6px; width:18px; height:14px; border-radius:4px;
+  background: linear-gradient(90deg, #9ca3af, #4b5563);
+  box-shadow: inset 0 0 2px rgba(255,255,255,.5);
+}
+.brushHead .bristles{
+  position:absolute; left:0; top:4px; width:22px; height:18px; border-radius:3px 0 0 3px;
+  background: linear-gradient(180deg, #0f172a, #1f2937);
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.2));
+}
+
+/* ================= Palette badge ================= */
+.palette{
+  width:46px; height:34px; border-radius:9999px; position:relative;
+  background: radial-gradient(65% 85% at 60% 50%, #fff, #f1f5f9);
+  box-shadow: 0 2px 6px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.6);
+}
+@media (prefers-color-scheme: dark){
+  .palette{
+    background: radial-gradient(65% 85% at 60% 50%, #192134, #0f1626);
+    box-shadow: 0 2px 8px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.12);
+  }
+}
+.palette .hole{
+  position:absolute; right:6px; top:10px; width:12px; height:12px; border-radius:9999px;
+  box-shadow: inset 0 0 0 8px #11182710, inset 0 0 0 2px #33415530;
+}
+.palette .dab{
+  position:absolute; width:8px; height:8px; border-radius:9999px; opacity:.95;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+}
+.dab-1{ left:7px; top:7px; background:#ef4444; }
+.dab-2{ left:18px; top:5px; background:#f59e0b; }
+.dab-3{ left:8px; top:18px; background:#10b981; }
+.dab-4{ left:20px; top:20px; background:#3b82f6; }
+
+/* Palette gentle tint pulse */
+@keyframes tint { 0%{ filter:hue-rotate(0deg); } 100%{ filter:hue-rotate(360deg); } }
+.animate-palette-tint { animation: tint 6s linear infinite; }
+
+/* Dots after message */
+.dots{ letter-spacing:2px; animation: dots 1.2s ease-in-out infinite; }
+@keyframes dots{ 0%{opacity:.25} 33%{opacity:.6} 66%{opacity:1} 100%{opacity:.25} }
+
+/* ================= Reduced motion ================= */
+@media (prefers-reduced-motion: reduce){
+  .strokePath,.bristle,.brushHead,.animate-palette-tint,.dots{ animation:none !important; }
+}
+
+/* ================= Dark-mode pop for strokes ================= */
+@media (prefers-color-scheme: dark){
+  .strokeGroup .strokePath,
+  .strokeGroup .bristle{
+    filter: drop-shadow(0 10px 14px rgba(0,0,0,.35));
+  }
+}
+/* Optional: subtle shine on hover */
+.group:hover .rounded-2xl::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(100deg, transparent 25%, rgba(255,255,255,0.18) 50%, transparent 75%);
+  transform: translateX(-120%);
+  animation: card-shine 0.8s forwards;
+  mix-blend-mode: screen;
+}
+@keyframes card-shine {
+  to { transform: translateX(120%); }
+}
+/* ===== Vivid Art & Craft Background ===== */
+
+/* Animated multi-color base gradient */
+.bg-artcraft-vivid{
+  background: radial-gradient(120% 120% at 10% 0%, #ffecd2 0%, #fcb69f 25%, #f6d365 45%, #fda085 60%, #fd6585 75%, #a8edea 100%);
+  background-size: 200% 200%;
+  animation: art-pan 16s ease-in-out infinite alternate;
+}
+
+/* Layered soft color blobs that adapt to screen */
+.bg-artcraft-blobs{
+  background:
+    radial-gradient(40% 35% at 12% 18%, rgba(255, 0, 128, .18), transparent 60%),
+    radial-gradient(30% 30% at 85% 20%, rgba(59, 130, 246, .18), transparent 60%),
+    radial-gradient(35% 32% at 25% 78%, rgba(16, 185, 129, .18), transparent 60%),
+    radial-gradient(28% 28% at 78% 72%, rgba(245, 158, 11, .18), transparent 60%);
+  mix-blend-mode: overlay;
+}
+
+/* Paper-like grain for texture */
+.bg-artcraft-grain{
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'>\
+<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/><feColorMatrix type='saturate' values='0'/>\
+<feComponentTransfer><feFuncA type='table' tableValues='0 .02 .05 0'/></feComponentTransfer></filter>\
+<rect width='48' height='48' filter='url(%23n)' fill='black'/></svg>");
+  background-size: 220px 220px;
+}
+
+/* Smooth animated pan for the base gradient */
+@keyframes art-pan{
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 100%; }
+}
+
+/* Dark mode variant (keeps it colorful but deeper) */
+@media (prefers-color-scheme: dark){
+  .bg-artcraft-vivid{
+    background: radial-gradient(120% 120% at 10% 0%, #2a1f3e 0%, #3d2b63 25%, #2a4365 45%, #2c3e50 60%, #5a2a52 75%, #1b3a4b 100%);
+    background-size: 200% 200%;
+  }
+  .bg-artcraft-blobs{
+    background:
+      radial-gradient(42% 36% at 12% 18%, rgba(255, 85, 170, .22), transparent 60%),
+      radial-gradient(32% 30% at 85% 20%, rgba(96, 165, 250, .22), transparent 60%),
+      radial-gradient(36% 34% at 25% 78%, rgba(52, 211, 153, .22), transparent 60%),
+      radial-gradient(30% 28% at 78% 72%, rgba(251, 191, 36, .22), transparent 60%);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .bg-artcraft-vivid{ animation: none; }
 }
