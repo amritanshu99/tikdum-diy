@@ -41,7 +41,7 @@ export default async function Home() {
           </p>
           <div className="hero__actions">
             <Link href="/artworks" className="button button--dark">
-              Explore the collection <span aria-hidden="true">↗</span>
+              Explore the collection <span aria-hidden="true">↗︎</span>
             </Link>
             <Link href="/journal" className="text-link">
               Read the journal <span aria-hidden="true">→</span>
@@ -67,9 +67,17 @@ export default async function Home() {
               <ArtworkImage
                 artwork={heroArtwork}
                 className="hero__image"
-                priority
+                eager
                 sizes="(max-width: 900px) 100vw, 52vw"
               />
+              <span className="hero__image-label" aria-hidden="true">
+                Original work · No. 01
+              </span>
+              <span className="hero__seal" aria-hidden="true">
+                <span>Made</span>
+                <strong>slowly</strong>
+                <span>with care</span>
+              </span>
             </div>
             <div className="hero__caption">
               <div>
@@ -87,7 +95,7 @@ export default async function Home() {
       </section>
 
       <section className="collection-section page-gutter">
-        <header className="section-heading">
+        <header className="section-heading reveal">
           <div>
             <p className="eyebrow">Selected works · 2026</p>
             <h2>From the collection</h2>
@@ -105,11 +113,12 @@ export default async function Home() {
               artwork={artwork}
               index={index}
               large={index === 0}
+              eager={index === 0}
             />
           ))}
         </div>
 
-        <div className="section-end-link">
+        <div className="section-end-link reveal">
           <Link href="/artworks" className="text-link">
             View all artworks <span aria-hidden="true">→</span>
           </Link>
@@ -125,7 +134,7 @@ export default async function Home() {
             and feel more at home in our own lives.
           </blockquote>
           <Link href="/about" className="button button--light">
-            About TikDum <span aria-hidden="true">↗</span>
+            About TikDum <span aria-hidden="true">↗︎</span>
           </Link>
         </div>
         <div className="manifesto__mark" aria-hidden="true">
@@ -134,7 +143,7 @@ export default async function Home() {
       </section>
 
       <section className="journal-section page-gutter">
-        <header className="section-heading section-heading--journal">
+        <header className="section-heading section-heading--journal reveal">
           <div>
             <p className="eyebrow">Notes from the studio</p>
             <h2>The journal</h2>
@@ -146,7 +155,11 @@ export default async function Home() {
 
         <div className="journal-grid">
           {posts.slice(0, 2).map((post, index) => (
-            <article className="journal-card reveal" key={post._id}>
+            <article
+              className="journal-card reveal"
+              data-reveal-delay={index * 100}
+              key={post._id}
+            >
               <Link href={`/journal/${post.slug}`}>
                 <div
                   className={`journal-card__image-wrap ${
@@ -160,24 +173,30 @@ export default async function Home() {
                       localImage: post.localImage,
                     }}
                     className="journal-card__image"
+                    eager={index === 0}
                     sizes="(max-width: 800px) 100vw, 48vw"
                   />
                 </div>
                 <div className="journal-card__meta">
-                  <p>{formatDate(post.publishedAt)}</p>
+                  <time dateTime={post.publishedAt}>
+                    {formatDate(post.publishedAt)}
+                  </time>
                   <span>Journal</span>
                 </div>
                 <h3>{post.title}</h3>
                 {post.excerpt ? (
                   <p className="journal-card__excerpt">{post.excerpt}</p>
                 ) : null}
+                <span className="journal-card__read" aria-hidden="true">
+                  Read story <span aria-hidden="true">↗︎</span>
+                </span>
               </Link>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="closing-note page-gutter">
+      <section className="closing-note page-gutter reveal">
         <p className="eyebrow">A living collection</p>
         <h2>New work, honest process, and small reasons to keep looking.</h2>
         <Link
@@ -186,7 +205,7 @@ export default async function Home() {
           aria-label="Browse artworks"
         >
           Browse
-          <span aria-hidden="true">↗</span>
+          <span aria-hidden="true">↗︎</span>
         </Link>
       </section>
     </>

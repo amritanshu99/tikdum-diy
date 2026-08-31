@@ -10,14 +10,17 @@ type VisualRecord = Pick<ArtworkRecord, "title" | "image" | "localImage"> &
 type ArtworkImageProps = {
   artwork: VisualRecord;
   className?: string;
-  priority?: boolean;
+  eager?: boolean;
   sizes: string;
 };
+
+const fallbackBlurDataUrl =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='50' viewBox='0 0 40 50'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%23d8c9af'/%3E%3Cstop offset='.55' stop-color='%23eee7d9'/%3E%3Cstop offset='1' stop-color='%23c77c59'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M0 0h40v50H0z'/%3E%3C/svg%3E";
 
 export function ArtworkImage({
   artwork,
   className,
-  priority = false,
+  eager = false,
   sizes,
 }: ArtworkImageProps) {
   const cmsImage = artwork.image ?? artwork.coverImage;
@@ -34,7 +37,7 @@ export function ArtworkImage({
         alt={alt}
         className={className}
         fill
-        loading={priority ? "eager" : "lazy"}
+        loading={eager ? "eager" : "lazy"}
         sizes={sizes}
       />
     );
@@ -47,7 +50,9 @@ export function ArtworkImage({
         alt={alt}
         className={className}
         fill
-        loading={priority ? "eager" : "lazy"}
+        loading={eager ? "eager" : "lazy"}
+        placeholder="blur"
+        blurDataURL={fallbackBlurDataUrl}
         sizes={sizes}
       />
     );

@@ -26,7 +26,7 @@ export default async function JournalPage() {
 
   return (
     <>
-      <header className="page-intro page-gutter">
+      <header className="page-intro page-gutter reveal">
         <div>
           <p className="eyebrow">Notes from the studio</p>
           <h1>Journal</h1>
@@ -38,18 +38,24 @@ export default async function JournalPage() {
       </header>
 
       <section className="journal-list page-gutter" aria-label="Journal stories">
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <Link
             href={`/journal/${post.slug}`}
-            className="journal-row"
+            className="journal-row reveal"
+            data-reveal-delay={Math.min(index, 3) * 70}
             key={post._id}
           >
-            <p className="journal-row__date">{formatDate(post.publishedAt)}</p>
+            <time className="journal-row__date" dateTime={post.publishedAt}>
+              {formatDate(post.publishedAt)}
+            </time>
             <div>
               <h2>{post.title}</h2>
               {post.excerpt ? (
                 <p className="journal-row__excerpt">{post.excerpt}</p>
-              ) : null}
+                ) : null}
+              <span className="journal-row__cta" aria-hidden="true">
+                Read story <span aria-hidden="true">↗︎</span>
+              </span>
             </div>
             <div className="journal-row__visual">
               <ArtworkImage
@@ -59,6 +65,7 @@ export default async function JournalPage() {
                   localImage: post.localImage,
                 }}
                 className="journal-card__image"
+                eager={index === 0}
                 sizes="(max-width: 700px) 100vw, 30vw"
               />
             </div>

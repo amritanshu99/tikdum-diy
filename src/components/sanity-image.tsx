@@ -14,7 +14,13 @@ export function SanityImage({
   height,
   ...props
 }: SanityImageProps) {
-  let imageUrl = urlForImage(src).auto("format").fit("max");
+  let imageUrl = urlForImage(src).width(2400).auto("format").fit("max");
+  const previewUrl = urlForImage(src)
+    .width(48)
+    .quality(28)
+    .blur(32)
+    .auto("format")
+    .url();
 
   if (typeof width === "number") imageUrl = imageUrl.width(width);
   if (typeof height === "number") imageUrl = imageUrl.height(height);
@@ -26,7 +32,8 @@ export function SanityImage({
       alt={alt}
       width={width}
       height={height}
+      placeholder={props.placeholder ?? "blur"}
+      blurDataURL={props.blurDataURL ?? previewUrl}
     />
   );
 }
-

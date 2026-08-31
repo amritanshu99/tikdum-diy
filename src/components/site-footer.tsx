@@ -4,13 +4,22 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="site-footer__lead">
-        <p className="eyebrow eyebrow--light">TikDum · India</p>
+        <div>
+          <p className="eyebrow eyebrow--light">TikDum · India</p>
+          <p className="site-footer__note">
+            Original art, joyful craft, and field notes from an evolving studio
+            practice.
+          </p>
+        </div>
         <p className="site-footer__statement">
           Art for the rooms we live in and the lives we make there.
         </p>
       </div>
+      <p className="site-footer__wordmark" aria-hidden="true">
+        TikDum
+      </p>
       <div className="site-footer__bottom">
-        <Link href="/" className="footer-mark">
+        <Link href="/" className="footer-mark" aria-label="TikDum home">
           T
         </Link>
         <nav aria-label="Footer navigation">
@@ -22,6 +31,22 @@ export function SiteFooter() {
           <span>www.tikdumdiy.com</span>
           <span>© {new Date().getFullYear()} TikDum</span>
         </div>
+        <a
+          className="site-footer__credit"
+          href="https://www.amiverse.in"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Made with love by Amiverse (opens in a new tab)"
+        >
+          <span>Made with</span>
+          <span className="site-footer__heart" aria-hidden="true">
+            ♥
+          </span>
+          <span>by Amiverse</span>
+          <span className="site-footer__credit-arrow" aria-hidden="true">
+            ↗︎
+          </span>
+        </a>
       </div>
     </footer>
   );

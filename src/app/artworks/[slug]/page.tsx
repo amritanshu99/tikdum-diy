@@ -43,7 +43,7 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
         <ArtworkImage
           artwork={artwork}
           className="art-card__image"
-          priority
+          eager
           sizes="(max-width: 900px) 100vw, 58vw"
         />
       </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-
-import { ArtworkImage } from "@/components/artwork-image";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About",
@@ -36,24 +35,22 @@ export default function AboutPage() {
           <h1>A home for thoughtful making.</h1>
         </div>
         <div className="about-hero__visual reveal">
-          <ArtworkImage
-            artwork={{
-              title: "Garden Glyphs",
-              localImage: "/images/art/botanical-rhythm.png",
-            }}
-            className="journal-card__image"
-            priority
+          <Image
+            src="/images/brand/tikdum-diy-logo.webp"
+            alt="TikDum DIY — it is all about art and craft, by Neha and Sneha"
+            fill
+            preload
             sizes="(max-width: 700px) 100vw, 50vw"
           />
         </div>
       </section>
 
-      <section className="about-story page-gutter">
+      <section className="about-story page-gutter reveal">
         <p className="eyebrow">The beginning</p>
         <div className="about-story__body">
           <p>
-            TikDum began with a simple idea: the things we make and live with
-            can help us pay better attention.
+            TikDum DIY began with a simple idea shared by Neha and Sneha: the
+            things we make and live with can help us pay better attention.
           </p>
           <p>
             This is an evolving collection of original art, material studies,
@@ -63,9 +60,36 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="makers-feature page-gutter reveal" aria-labelledby="makers-title">
+        <div className="makers-feature__visual">
+          <Image
+            src="/images/brand/tikdum-diy-founders.webp"
+            alt="Neha and Sneha, the makers behind TikDum DIY"
+            fill
+            sizes="(max-width: 700px) calc(100vw - 2.2rem), min(92vw, 86rem)"
+          />
+        </div>
+        <div className="makers-feature__caption">
+          <div>
+            <p className="eyebrow">The makers</p>
+            <h2 id="makers-title">
+              Made together, <em>with joy.</em>
+            </h2>
+          </div>
+          <p>
+            Neha and Sneha bring curiosity, colour, and the pleasure of making
+            by hand to every story shared here.
+          </p>
+        </div>
+      </section>
+
       <section className="about-principles" aria-label="Our principles">
         {principles.map((principle) => (
-          <article className="about-principle" key={principle.number}>
+          <article
+            className="about-principle reveal"
+            data-reveal-delay={Number(principle.number) * 70}
+            key={principle.number}
+          >
             <span>{principle.number}</span>
             <h2>{principle.title}</h2>
             <p>{principle.copy}</p>

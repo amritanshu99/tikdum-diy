@@ -15,7 +15,7 @@ export default async function ArtworksPage() {
 
   return (
     <>
-      <header className="page-intro page-gutter">
+      <header className="page-intro page-gutter reveal">
         <div>
           <p className="eyebrow">The collection</p>
           <h1>Artworks</h1>
@@ -33,6 +33,7 @@ export default async function ArtworksPage() {
               artwork={artwork}
               index={index}
               large={index % 3 === 0}
+              eager={index === 0}
             />
           ))}
         </div>

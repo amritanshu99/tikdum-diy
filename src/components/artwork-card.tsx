@@ -7,27 +7,37 @@ type ArtworkCardProps = {
   artwork: ArtworkRecord;
   index?: number;
   large?: boolean;
+  eager?: boolean;
 };
 
 export function ArtworkCard({
   artwork,
   index = 0,
   large = false,
+  eager = false,
 }: ArtworkCardProps) {
   const aspectClass =
     index % 3 === 2 ? "art-card__visual--square" : "art-card__visual--portrait";
 
   return (
-    <article className={`art-card reveal ${large ? "art-card--large" : ""}`}>
+    <article
+      className={`art-card reveal ${large ? "art-card--large" : ""}`}
+      data-reveal-delay={Math.min(index % 3, 2) * 80}
+    >
       <Link href={`/artworks/${artwork.slug}`} className="art-card__link">
         <div className={`art-card__visual ${aspectClass}`}>
           <ArtworkImage
             artwork={artwork}
             className="art-card__image"
-            sizes={large ? "(max-width: 900px) 100vw, 58vw" : "(max-width: 700px) 100vw, 34vw"}
+            eager={eager}
+            sizes={
+              large
+                ? "(max-width: 700px) calc(100vw - 2.5rem), (max-width: 980px) 48vw, min(58vw, 55rem)"
+                : "(max-width: 700px) calc(100vw - 2.5rem), (max-width: 980px) 48vw, min(42vw, 40rem)"
+            }
           />
           <span className="art-card__view" aria-hidden="true">
-            View work <span>↗</span>
+            View work <span aria-hidden="true">↗︎</span>
           </span>
         </div>
         <div className="art-card__meta">
