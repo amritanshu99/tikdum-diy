@@ -418,6 +418,18 @@ img {
   min-height: 36rem;
 }
 
+.hero__art--brand {
+  align-self: center;
+  min-height: 0;
+}
+
+.hero__art--brand .hero__image-wrap {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1;
+  background: #167c9d;
+}
+
 .hero__art::before {
   position: absolute;
   z-index: -1;
@@ -1897,6 +1909,11 @@ img {
   .hero__art,
   .hero__image-wrap {
     min-height: 30rem;
+  }
+
+  .hero__art--brand {
+    min-height: 0;
+    order: -1;
   }
 
   .hero__art::before {

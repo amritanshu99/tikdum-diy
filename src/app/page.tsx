@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { ArtworkCard } from "@/components/artwork-card";
@@ -24,8 +25,6 @@ export default async function Home() {
     getPosts(),
     getSiteSettings(),
   ]);
-  const heroArtwork = artworks[0];
-
   return (
     <>
       <section className="hero page-gutter">
@@ -57,41 +56,32 @@ export default async function Home() {
           </div>
         </div>
 
-        {heroArtwork ? (
-          <Link
-            href={`/artworks/${heroArtwork.slug}`}
-            className="hero__art reveal"
-            aria-label={`View ${heroArtwork.title}`}
-          >
-            <div className="hero__image-wrap">
-              <ArtworkImage
-                artwork={heroArtwork}
-                className="hero__image"
-                eager
-                sizes="(max-width: 900px) 100vw, 52vw"
-              />
-              <span className="hero__image-label" aria-hidden="true">
-                Original work · No. 01
-              </span>
-              <span className="hero__seal" aria-hidden="true">
-                <span>Made</span>
-                <strong>slowly</strong>
-                <span>with care</span>
-              </span>
+        <Link
+          href="/about"
+          className="hero__art hero__art--brand reveal"
+          aria-label="Meet Neha and Sneha, the makers behind TikDum DIY"
+        >
+          <div className="hero__image-wrap">
+            <Image
+              src="/images/brand/tikdum-diy-logo.webp"
+              alt="TikDum DIY — it is all about art and craft, by Neha and Sneha"
+              className="hero__image"
+              fill
+              preload
+              sizes="(max-width: 900px) calc(100vw - 2.5rem), 52vw"
+            />
+            <span className="hero__image-label" aria-hidden="true">
+              TikDum DIY · Art &amp; craft
+            </span>
+          </div>
+          <div className="hero__caption">
+            <div>
+              <span>The studio</span>
+              <strong>TikDum DIY</strong>
             </div>
-            <div className="hero__caption">
-              <div>
-                <span>Featured work</span>
-                <strong>{heroArtwork.title}</strong>
-              </div>
-              <p>
-                {[heroArtwork.artist, heroArtwork.year]
-                  .filter(Boolean)
-                  .join(", ")}
-              </p>
-            </div>
-          </Link>
-        ) : null}
+            <p>Neha &amp; Sneha · India</p>
+          </div>
+        </Link>
       </section>
 
       <section className="collection-section page-gutter">
@@ -122,6 +112,33 @@ export default async function Home() {
           <Link href="/artworks" className="text-link">
             View all artworks <span aria-hidden="true">→</span>
           </Link>
+        </div>
+      </section>
+
+      <section
+        className="makers-feature page-gutter reveal"
+        aria-labelledby="home-makers-title"
+      >
+        <div className="makers-feature__visual">
+          <Image
+            src="/images/brand/tikdum-diy-founders.webp"
+            alt="Neha and Sneha, the makers behind TikDum DIY"
+            fill
+            sizes="(max-width: 700px) calc(100vw - 2.2rem), min(92vw, 86rem)"
+          />
+        </div>
+        <div className="makers-feature__caption">
+          <div>
+            <p className="eyebrow">Meet the makers</p>
+            <h2 id="home-makers-title">
+              Two imaginations, <em>one joyful studio.</em>
+            </h2>
+          </div>
+          <p>
+            TikDum DIY is made by Neha and Sneha—a shared space for colourful
+            ideas, handmade experiments, and stories that make creativity feel
+            welcoming.
+          </p>
         </div>
       </section>
 
