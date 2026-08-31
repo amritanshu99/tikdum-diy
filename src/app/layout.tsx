@@ -84,8 +84,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${displayFont.variable} ${bodyFont.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${displayFont.variable} ${bodyFont.variable}`}
+    >
+      <body>
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />

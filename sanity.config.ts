@@ -3,12 +3,33 @@ import { structureTool } from "sanity/structure";
 
 import { schemaTypes } from "./src/sanity/schemaTypes";
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID;
-const dataset = process.env.SANITY_STUDIO_DATASET ?? "production";
+const frontendProjectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const frontendDataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+const studioProjectId = process.env.SANITY_STUDIO_PROJECT_ID;
+const studioDataset = process.env.SANITY_STUDIO_DATASET;
+
+if (
+  frontendProjectId &&
+  studioProjectId &&
+  frontendProjectId !== studioProjectId
+) {
+  throw new Error(
+    "Sanity project mismatch: the Studio and website project IDs must match.",
+  );
+}
+
+if (frontendDataset && studioDataset && frontendDataset !== studioDataset) {
+  throw new Error(
+    "Sanity dataset mismatch: the Studio and website datasets must match.",
+  );
+}
+
+const projectId = studioProjectId ?? frontendProjectId;
+const dataset = studioDataset ?? frontendDataset ?? "production";
 
 if (!projectId) {
   throw new Error(
-    "Missing SANITY_STUDIO_PROJECT_ID. Copy .env.example to .env.local and add your Sanity project ID.",
+    "Missing Sanity project ID. Set SANITY_STUDIO_PROJECT_ID or NEXT_PUBLIC_SANITY_PROJECT_ID in .env.local.",
   );
 }
 

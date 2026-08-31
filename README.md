@@ -36,13 +36,22 @@ switches that section to Sanity content.
    ```
 
 3. Copy `.env.example` to `.env.local` and add your Sanity project ID.
-4. Start the website:
+4. Verify that the website and Studio point to the same reachable dataset:
+
+   ```bash
+   npm run sanity:check
+   ```
+
+   An empty but reachable dataset passes this check; the website will use its
+   local starter content until documents are published.
+
+5. Start the website:
 
    ```bash
    npm run dev
    ```
 
-5. In another terminal, start Sanity Studio:
+6. In another terminal, start Sanity Studio:
 
    ```bash
    npm run sanity:dev
@@ -86,6 +95,7 @@ npm run build
 npm run start
 npm run lint
 npm run typecheck
+npm run sanity:check
 npm run sanity:dev
 npm run sanity:deploy
 ```

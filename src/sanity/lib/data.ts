@@ -13,14 +13,19 @@ import type {
   SiteSettingsRecord,
 } from "@/sanity/types";
 
-import { client } from "./client";
+import { sanityFetch } from "./client";
 
 const legacyBrandNames = new Set(["tikdum", "tikdum studio", "tikdum diy"]);
 
 function normalizeArtworkBrand(artwork: ArtworkRecord): ArtworkRecord {
-  return legacyBrandNames.has(artwork.artist.trim().toLowerCase())
-    ? { ...artwork, artist: siteConfig.name }
-    : artwork;
+  const artist = artwork.artist?.trim() || siteConfig.name;
+
+  return {
+    ...artwork,
+    artist: legacyBrandNames.has(artist.toLowerCase())
+      ? siteConfig.name
+      : artist,
+  };
 }
 
 const artworksQuery = defineQuery(`
@@ -91,7 +96,7 @@ const postQuery = defineQuery(`
 `);
 
 const settingsQuery = defineQuery(`
-  *[_type == "siteSettings"][0] {
+  *[_type == "siteSettings"] | order(_updatedAt desc) [0] {
     title,
     description
   }
@@ -99,26 +104,36 @@ const settingsQuery = defineQuery(`
 
 async function fetchFromSanity<T>(
   query: string,
+  label: string,
   params: Record<string, string> = {},
 ): Promise<T | null> {
   try {
-    return await client.fetch<T>(query, params);
-  } catch {
+    return await sanityFetch<T>({ query, params });
+  } catch (error) {
+    console.error(
+      `[Sanity] Could not load ${label}; using local fallback content.`,
+      error instanceof Error ? error.message : error,
+    );
     return null;
   }
 }
 
 export const getArtworks = cache(async (): Promise<ArtworkRecord[]> => {
-  const artworks = await fetchFromSanity<ArtworkRecord[]>(artworksQuery);
+  const artworks = await fetchFromSanity<ArtworkRecord[]>(
+    artworksQuery,
+    "artworks",
+  );
   const records = artworks?.length ? artworks : fallbackArtworks;
   return records.map(normalizeArtworkBrand);
 });
 
 export const getArtworkBySlug = cache(
   async (slug: string): Promise<ArtworkRecord | null> => {
-    const artwork = await fetchFromSanity<ArtworkRecord | null>(artworkQuery, {
-      slug,
-    });
+    const artwork = await fetchFromSanity<ArtworkRecord | null>(
+      artworkQuery,
+      `artwork "${slug}"`,
+      { slug },
+    );
 
     const record =
       artwork ??
@@ -130,15 +145,20 @@ export const getArtworkBySlug = cache(
 );
 
 export const getPosts = cache(async (): Promise<JournalPostRecord[]> => {
-  const posts = await fetchFromSanity<JournalPostRecord[]>(postsQuery);
+  const posts = await fetchFromSanity<JournalPostRecord[]>(
+    postsQuery,
+    "journal posts",
+  );
   return posts?.length ? posts : fallbackPosts;
 });
 
 export const getPostBySlug = cache(
   async (slug: string): Promise<JournalPostRecord | null> => {
-    const post = await fetchFromSanity<JournalPostRecord | null>(postQuery, {
-      slug,
-    });
+    const post = await fetchFromSanity<JournalPostRecord | null>(
+      postQuery,
+      `journal post "${slug}"`,
+      { slug },
+    );
 
     return (
       post ??
@@ -151,10 +171,15 @@ export const getPostBySlug = cache(
 export const getSiteSettings = cache(
   async (): Promise<SiteSettingsRecord> => {
     const settings =
-      await fetchFromSanity<SiteSettingsRecord | null>(settingsQuery);
+      await fetchFromSanity<SiteSettingsRecord | null>(
+        settingsQuery,
+        "site settings",
+      );
+
     return {
-      ...(settings ?? fallbackSiteSettings),
-      title: siteConfig.name,
+      title: settings?.title ?? fallbackSiteSettings.title ?? siteConfig.name,
+      description:
+        settings?.description ?? fallbackSiteSettings.description,
     };
   },
 );

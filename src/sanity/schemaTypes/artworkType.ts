@@ -34,7 +34,12 @@ export const artworkType = defineType({
       ],
       validation: (rule) => rule.required(),
     }),
-    defineField({ name: "artist", title: "Artist", type: "string" }),
+    defineField({
+      name: "artist",
+      title: "Artist",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
     defineField({ name: "year", title: "Year", type: "number" }),
     defineField({ name: "medium", title: "Medium", type: "string" }),
     defineField({
@@ -54,4 +59,3 @@ export const artworkType = defineType({
     select: { title: "title", subtitle: "artist", media: "image" },
   },
 });
-

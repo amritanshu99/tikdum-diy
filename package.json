@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "sanity:check": "node --env-file=.env.local scripts/check-sanity.mjs",
     "sanity:dev": "sanity dev",
     "sanity:deploy": "sanity deploy"
   },

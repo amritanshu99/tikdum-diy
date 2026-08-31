@@ -18,6 +18,10 @@
   --sans: var(--font-body), Arial, Helvetica, sans-serif;
   --shadow-soft: 0 24px 70px rgba(55, 42, 24, 0.12);
   --ease-out: cubic-bezier(0.22, 0.72, 0.2, 1);
+  --type-hero: clamp(3.1rem, 5.25vw, 6rem);
+  --type-page: clamp(2.85rem, 4.8vw, 5.2rem);
+  --type-section: clamp(2.6rem, 4.2vw, 4.5rem);
+  --type-feature: clamp(2.25rem, 3.7vw, 4rem);
 }
 
 @theme inline {
@@ -167,7 +171,7 @@ img {
 
 .wordmark > span {
   font-family: var(--serif);
-  font-size: clamp(2rem, 2.6vw, 2.7rem);
+  font-size: clamp(1.85rem, 2.2vw, 2.35rem);
   font-weight: 500;
   font-style: italic;
   line-height: 0.86;
@@ -177,7 +181,7 @@ img {
 
 .wordmark small {
   color: var(--muted);
-  font-size: 0.52rem;
+  font-size: 0.58rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -193,7 +197,7 @@ img {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
-  font-size: 0.69rem;
+  font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -250,7 +254,7 @@ img {
 .eyebrow {
   margin: 0;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.19em;
   line-height: 1.4;
@@ -264,12 +268,12 @@ img {
 .hero {
   position: relative;
   display: grid;
-  min-height: min(51rem, calc(100vh - 8rem));
-  grid-template-columns: minmax(0, 0.88fr) minmax(22rem, 1.12fr);
+  min-height: min(46rem, calc(100vh - 8rem));
+  grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 1.08fr);
   gap: clamp(2rem, 6vw, 7.5rem);
   align-items: center;
-  padding-top: clamp(3rem, 7vw, 7rem);
-  padding-bottom: clamp(4rem, 8vw, 8rem);
+  padding-top: clamp(3rem, 5.5vw, 5.5rem);
+  padding-bottom: clamp(4rem, 6.5vw, 6.5rem);
 }
 
 .hero::before {
@@ -293,18 +297,19 @@ img {
 }
 
 .hero h1 {
-  max-width: 9ch;
+  max-width: 10ch;
   margin: clamp(1.5rem, 3vw, 2.75rem) 0 0;
   font-family: var(--serif);
-  font-size: clamp(4rem, 7.3vw, 8rem);
+  font-size: var(--type-hero);
   font-weight: 460;
   letter-spacing: -0.058em;
-  line-height: 0.8;
+  line-height: 0.86;
+  text-wrap: balance;
 }
 
 .hero h1 span {
   display: block;
-  margin-left: clamp(1.5rem, 4vw, 5rem);
+  margin-left: clamp(0.75rem, 2.5vw, 3rem);
   color: var(--accent);
   font-style: italic;
   font-weight: 430;
@@ -316,7 +321,7 @@ img {
   margin: clamp(2rem, 4vw, 3.5rem) 0 0;
   color: #4f504a;
   font-family: var(--serif);
-  font-size: clamp(1.15rem, 1.55vw, 1.45rem);
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
   line-height: 1.55;
 }
 
@@ -556,8 +561,8 @@ img {
 
 .collection-section,
 .journal-section {
-  padding-top: clamp(5rem, 10vw, 10rem);
-  padding-bottom: clamp(5rem, 10vw, 10rem);
+  padding-top: clamp(4.5rem, 7vw, 7rem);
+  padding-bottom: clamp(4.5rem, 7vw, 7rem);
   border-top: 1px solid var(--line);
 }
 
@@ -572,7 +577,7 @@ img {
   grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
   gap: 3rem;
   align-items: end;
-  margin-bottom: clamp(3rem, 7vw, 6rem);
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
 }
 
 .section-heading h2,
@@ -580,10 +585,22 @@ img {
 .closing-note h2 {
   margin: 0.6rem 0 0;
   font-family: var(--serif);
-  font-size: clamp(3.1rem, 6.5vw, 6.7rem);
   font-weight: 470;
   letter-spacing: -0.052em;
   line-height: 0.92;
+  text-wrap: balance;
+}
+
+.section-heading h2 {
+  font-size: var(--type-section);
+}
+
+.page-intro h1 {
+  font-size: var(--type-page);
+}
+
+.closing-note h2 {
+  font-size: var(--type-feature);
 }
 
 .section-heading > p {
@@ -701,7 +718,7 @@ img {
 .manifesto {
   position: relative;
   display: grid;
-  min-height: 44rem;
+  min-height: 38rem;
   grid-template-columns: 0.3fr minmax(0, 1fr) 0.5fr;
   gap: 2rem;
   align-items: center;
@@ -742,10 +759,11 @@ img {
 .manifesto blockquote {
   margin: 2rem 0 3rem;
   font-family: var(--serif);
-  font-size: clamp(2.6rem, 5.2vw, 5.4rem);
+  font-size: var(--type-feature);
   font-weight: 450;
   letter-spacing: -0.045em;
-  line-height: 0.98;
+  line-height: 1.02;
+  text-wrap: balance;
 }
 
 .manifesto__mark {
@@ -806,7 +824,7 @@ img {
   max-width: 15ch;
   margin: 1.1rem 0 0;
   font-family: var(--serif);
-  font-size: clamp(2rem, 3.4vw, 3.5rem);
+  font-size: clamp(1.8rem, 2.8vw, 2.9rem);
   font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 1;
@@ -843,7 +861,7 @@ img {
 .closing-note {
   position: relative;
   display: grid;
-  min-height: 35rem;
+  min-height: 29rem;
   grid-template-columns: 0.35fr 1fr auto;
   gap: 3rem;
   align-items: center;
@@ -865,7 +883,6 @@ img {
 
 .closing-note h2 {
   max-width: 13ch;
-  font-size: clamp(2.8rem, 5vw, 5.5rem);
 }
 
 .circle-link {
@@ -898,7 +915,7 @@ img {
 .site-footer {
   position: relative;
   overflow: hidden;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 4vw, 4.5rem) 1.75rem;
+  padding: clamp(4rem, 6vw, 5.5rem) clamp(1.25rem, 4vw, 4.5rem) 1.75rem;
   background:
     radial-gradient(circle at 85% -10%, rgba(187, 74, 48, 0.23), transparent 28rem),
     radial-gradient(circle at 4% 90%, rgba(112, 128, 106, 0.18), transparent 24rem),
@@ -940,10 +957,11 @@ img {
   max-width: 19ch;
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(3rem, 6vw, 6.4rem);
+  font-size: var(--type-section);
   font-weight: 450;
   letter-spacing: -0.048em;
-  line-height: 0.95;
+  line-height: 1;
+  text-wrap: balance;
 }
 
 .site-footer__wordmark {
@@ -952,7 +970,7 @@ img {
   margin: 0 0 clamp(2rem, 4vw, 3.5rem);
   color: rgba(255, 255, 255, 0.085);
   font-family: var(--serif);
-  font-size: clamp(5.5rem, 13vw, 13rem);
+  font-size: clamp(5rem, 11vw, 10rem);
   font-style: italic;
   font-weight: 500;
   letter-spacing: -0.09em;
@@ -1060,12 +1078,12 @@ img {
 .page-intro {
   position: relative;
   display: grid;
-  min-height: 30rem;
+  min-height: clamp(20rem, 42vh, 25rem);
   grid-template-columns: 1.2fr 0.8fr;
   gap: 4rem;
   align-items: end;
-  padding-top: clamp(4rem, 8vw, 8rem);
-  padding-bottom: clamp(3rem, 6vw, 6rem);
+  padding-top: clamp(3.5rem, 5vw, 5rem);
+  padding-bottom: clamp(3rem, 4vw, 4rem);
   overflow: hidden;
 }
 
@@ -1087,7 +1105,7 @@ img {
   margin: 0;
   color: var(--muted);
   font-family: var(--serif);
-  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.2rem);
   line-height: 1.62;
 }
 
@@ -1105,7 +1123,7 @@ img {
   display: grid;
   grid-template-columns: minmax(18rem, 1.2fr) minmax(20rem, 0.8fr);
   gap: clamp(2rem, 6vw, 7rem);
-  min-height: 48rem;
+  min-height: 42rem;
   padding-top: clamp(2rem, 5vw, 5rem);
   padding-bottom: clamp(5rem, 8vw, 8rem);
 }
@@ -1131,10 +1149,11 @@ img {
 .art-detail__copy h1 {
   margin: 1.4rem 0 0;
   font-family: var(--serif);
-  font-size: clamp(3.4rem, 6vw, 6.5rem);
+  font-size: var(--type-page);
   font-weight: 470;
   letter-spacing: -0.052em;
-  line-height: 0.88;
+  line-height: 0.94;
+  text-wrap: balance;
 }
 
 .art-detail__artist {
@@ -1213,7 +1232,7 @@ img {
   max-width: 16ch;
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(2.3rem, 4vw, 4.3rem);
+  font-size: clamp(1.9rem, 3vw, 3.25rem);
   font-weight: 500;
   letter-spacing: -0.05em;
   line-height: 0.98;
@@ -1264,7 +1283,7 @@ img {
   position: relative;
   width: min(100%, 68rem);
   margin-inline: auto;
-  padding: clamp(5rem, 10vw, 10rem) clamp(1.25rem, 4vw, 4.5rem) 3rem;
+  padding: clamp(4rem, 7vw, 7rem) clamp(1.25rem, 4vw, 4.5rem) 3rem;
   text-align: center;
 }
 
@@ -1284,10 +1303,11 @@ img {
 .article-header h1 {
   margin: 1.5rem auto 0;
   font-family: var(--serif);
-  font-size: clamp(3.5rem, 7vw, 7.5rem);
+  font-size: var(--type-page);
   font-weight: 470;
   letter-spacing: -0.052em;
-  line-height: 0.88;
+  line-height: 0.94;
+  text-wrap: balance;
 }
 
 .article-header__excerpt {
@@ -1318,7 +1338,7 @@ img {
   padding-block: clamp(4rem, 8vw, 8rem);
   color: #34342f;
   font-family: var(--serif);
-  font-size: clamp(1.12rem, 1.7vw, 1.3rem);
+  font-size: clamp(1.08rem, 1.45vw, 1.2rem);
   line-height: 1.78;
 }
 
@@ -1337,7 +1357,7 @@ img {
 .article-body h2 {
   margin: 3.5rem 0 1.25rem;
   color: var(--ink);
-  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -1353,7 +1373,7 @@ img {
 .article-body blockquote {
   margin: 3rem -4rem;
   color: var(--accent);
-  font-size: clamp(2rem, 4vw, 3.7rem);
+  font-size: clamp(1.8rem, 3vw, 3rem);
   font-style: italic;
   letter-spacing: -0.04em;
   line-height: 1.1;
@@ -1379,7 +1399,7 @@ img {
   gap: 2rem;
   align-items: flex-start;
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 5.5vw, 5.8rem);
+  font-size: clamp(2.1rem, 4.2vw, 4.3rem);
   font-weight: 470;
   letter-spacing: -0.05em;
   line-height: 0.95;
@@ -1414,7 +1434,7 @@ img {
 
 .about-hero {
   display: grid;
-  min-height: 44rem;
+  min-height: 38rem;
   grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid var(--line);
 }
@@ -1430,10 +1450,11 @@ img {
   max-width: 9ch;
   margin: 1.4rem 0 0;
   font-family: var(--serif);
-  font-size: clamp(4rem, 7vw, 7.5rem);
+  font-size: var(--type-hero);
   font-weight: 470;
   letter-spacing: -0.052em;
-  line-height: 0.86;
+  line-height: 0.92;
+  text-wrap: balance;
 }
 
 .about-hero__visual {
@@ -1452,14 +1473,14 @@ img {
   display: grid;
   grid-template-columns: 0.45fr 1fr;
   gap: 4rem;
-  padding-top: clamp(5rem, 10vw, 10rem);
-  padding-bottom: clamp(5rem, 10vw, 10rem);
+  padding-top: clamp(4.5rem, 7vw, 7rem);
+  padding-bottom: clamp(4.5rem, 7vw, 7rem);
 }
 
 .about-story__body {
   max-width: 45rem;
   font-family: var(--serif);
-  font-size: clamp(1.45rem, 2.8vw, 2.4rem);
+  font-size: clamp(1.3rem, 2.1vw, 1.95rem);
   letter-spacing: -0.025em;
   line-height: 1.35;
 }
@@ -1469,7 +1490,7 @@ img {
 }
 
 .makers-feature {
-  padding-bottom: clamp(5rem, 10vw, 10rem);
+  padding-bottom: clamp(4.5rem, 7vw, 7rem);
 }
 
 .makers-feature__visual {
@@ -1507,10 +1528,11 @@ img {
   max-width: 14ch;
   margin: 0.65rem 0 0;
   font-family: var(--serif);
-  font-size: clamp(2.8rem, 5vw, 5.6rem);
+  font-size: var(--type-section);
   font-weight: 470;
   letter-spacing: -0.05em;
-  line-height: 0.92;
+  line-height: 0.96;
+  text-wrap: balance;
 }
 
 .makers-feature__caption h2 em {
@@ -1743,7 +1765,7 @@ img {
 @media (max-width: 900px) {
   .site-header {
     grid-template-columns: 1fr auto;
-    min-height: 5.25rem;
+    min-height: 4.75rem;
   }
 
   .site-nav {
@@ -1751,9 +1773,9 @@ img {
     grid-row: 2;
     width: 100%;
     justify-content: space-between;
-    padding-top: 1rem;
+    padding-top: 0.7rem;
     border-top: 1px solid var(--line);
-    margin-top: 1rem;
+    margin-top: 0.7rem;
   }
 
   .header-cta {
@@ -1766,7 +1788,7 @@ img {
   }
 
   .hero__copy {
-    min-height: 30rem;
+    min-height: 25rem;
   }
 
   .hero__art {
@@ -1856,6 +1878,7 @@ img {
   }
 
   .site-header {
+    padding-block: 0.8rem;
     padding-inline: 1.25rem;
   }
 
@@ -1874,13 +1897,14 @@ img {
 
   .site-nav a,
   .header-cta {
-    font-size: 0.65rem;
+    min-height: 2.3rem;
+    font-size: 0.68rem;
   }
 
   .hero {
     gap: 2.5rem;
-    padding-top: 3rem;
-    padding-bottom: 5rem;
+    padding-top: 2.75rem;
+    padding-bottom: 4.5rem;
   }
 
   .hero::before {
@@ -1894,7 +1918,7 @@ img {
 
   .hero h1 {
     max-width: 100%;
-    font-size: clamp(3.5rem, 17vw, 5.4rem);
+    font-size: clamp(2.9rem, 13vw, 3.75rem);
   }
 
   .hero h1 span {
@@ -1904,7 +1928,8 @@ img {
   }
 
   .hero__note {
-    margin-top: 2.5rem;
+    margin-top: 2.25rem;
+    padding-top: 0;
   }
 
   .hero__art,
@@ -1914,7 +1939,6 @@ img {
 
   .hero__art--brand {
     min-height: 0;
-    order: -1;
   }
 
   .hero__art::before {
@@ -1939,8 +1963,8 @@ img {
   .page-intro {
     min-height: auto;
     align-items: start;
-    padding-top: 5rem;
-    padding-bottom: 4rem;
+    padding-top: 3.75rem;
+    padding-bottom: 3.25rem;
   }
 
   .art-grid {
@@ -1966,7 +1990,7 @@ img {
   }
 
   .manifesto blockquote {
-    font-size: clamp(2.5rem, 11vw, 4rem);
+    font-size: clamp(2.2rem, 9vw, 3rem);
   }
 
   .section-heading--journal {
@@ -2006,7 +2030,7 @@ img {
 
   .site-footer__wordmark {
     margin-bottom: 2.5rem;
-    font-size: clamp(4.5rem, 19vw, 7rem);
+    font-size: clamp(3.75rem, 16vw, 5.5rem);
   }
 
   .journal-row {
@@ -2029,7 +2053,7 @@ img {
   }
 
   .article-next > a {
-    font-size: clamp(2.5rem, 12vw, 4.4rem);
+    font-size: clamp(2.1rem, 10vw, 3.2rem);
   }
 
   .about-hero {
@@ -2037,7 +2061,7 @@ img {
   }
 
   .about-hero__copy {
-    min-height: 30rem;
+    min-height: 23rem;
   }
 
   .about-principles {
@@ -2066,6 +2090,10 @@ img {
 }
 
 @media (max-width: 480px) {
+  .announcement {
+    display: none;
+  }
+
   .page-gutter {
     padding-inline: 1.1rem;
   }
@@ -2075,15 +2103,15 @@ img {
   }
 
   .wordmark > span {
-    font-size: clamp(1.55rem, 8.5vw, 2rem);
+    font-size: clamp(1.65rem, 8vw, 1.9rem);
   }
 
   .hero h1 {
-    font-size: clamp(3.45rem, 17vw, 4.85rem);
+    font-size: clamp(2.8rem, 13vw, 3.5rem);
   }
 
   .hero__intro {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .hero__actions {
@@ -2125,7 +2153,7 @@ img {
   }
 
   .site-footer__statement {
-    font-size: clamp(2.75rem, 14vw, 4.2rem);
+    font-size: clamp(2.4rem, 11vw, 3.2rem);
   }
 
   .site-footer__bottom {
@@ -2152,11 +2180,24 @@ img {
   }
 
   .about-hero__copy {
-    min-height: 25rem;
+    min-height: 21rem;
   }
 
   .about-hero h1 {
-    font-size: clamp(3.7rem, 17vw, 5rem);
+    font-size: clamp(2.9rem, 13vw, 3.75rem);
+  }
+
+  .hero__caption {
+    gap: 0.75rem;
+  }
+
+  .hero__caption strong {
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+
+  .hero__caption p {
+    text-align: right;
   }
 }
 
