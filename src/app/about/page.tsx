@@ -4,7 +4,7 @@ import Image from "next/image";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "TikDum is an independent space for art, process, and thoughtful making.",
+    "Tikdum DIY is an independent space for art, process, and thoughtful making.",
   alternates: { canonical: "/about" },
 };
 
@@ -31,13 +31,13 @@ export default function AboutPage() {
     <>
       <section className="about-hero">
         <div className="about-hero__copy reveal">
-          <p className="eyebrow">About TikDum</p>
+          <p className="eyebrow">About Tikdum DIY</p>
           <h1>A home for thoughtful making.</h1>
         </div>
         <div className="about-hero__visual reveal">
           <Image
             src="/images/brand/tikdum-diy-logo.webp"
-            alt="TikDum DIY — it is all about art and craft, by Neha and Sneha"
+            alt="Tikdum DIY — it is all about art and craft, by Neha and Sneha"
             fill
             preload
             sizes="(max-width: 700px) 100vw, 50vw"
@@ -49,7 +49,7 @@ export default function AboutPage() {
         <p className="eyebrow">The beginning</p>
         <div className="about-story__body">
           <p>
-            TikDum DIY began with a simple idea shared by Neha and Sneha: the
+            Tikdum DIY began with a simple idea shared by Neha and Sneha: the
             things we make and live with can help us pay better attention.
           </p>
           <p>
@@ -64,7 +64,7 @@ export default function AboutPage() {
         <div className="makers-feature__visual">
           <Image
             src="/images/brand/tikdum-diy-founders.webp"
-            alt="Neha and Sneha, the makers behind TikDum DIY"
+            alt="Neha and Sneha, the makers behind Tikdum DIY"
             fill
             sizes="(max-width: 700px) calc(100vw - 2.2rem), min(92vw, 86rem)"
           />

@@ -6,6 +6,7 @@ import {
   fallbackPosts,
   fallbackSiteSettings,
 } from "@/content/fallback";
+import { siteConfig } from "@/config/site";
 import type {
   ArtworkRecord,
   JournalPostRecord,
@@ -13,6 +14,14 @@ import type {
 } from "@/sanity/types";
 
 import { client } from "./client";
+
+const legacyBrandNames = new Set(["tikdum", "tikdum studio", "tikdum diy"]);
+
+function normalizeArtworkBrand(artwork: ArtworkRecord): ArtworkRecord {
+  return legacyBrandNames.has(artwork.artist.trim().toLowerCase())
+    ? { ...artwork, artist: siteConfig.name }
+    : artwork;
+}
 
 const artworksQuery = defineQuery(`
   *[_type == "artwork" && defined(slug.current)] |
@@ -101,7 +110,8 @@ async function fetchFromSanity<T>(
 
 export const getArtworks = cache(async (): Promise<ArtworkRecord[]> => {
   const artworks = await fetchFromSanity<ArtworkRecord[]>(artworksQuery);
-  return artworks?.length ? artworks : fallbackArtworks;
+  const records = artworks?.length ? artworks : fallbackArtworks;
+  return records.map(normalizeArtworkBrand);
 });
 
 export const getArtworkBySlug = cache(
@@ -110,11 +120,12 @@ export const getArtworkBySlug = cache(
       slug,
     });
 
-    return (
+    const record =
       artwork ??
       fallbackArtworks.find((candidate) => candidate.slug === slug) ??
-      null
-    );
+      null;
+
+    return record ? normalizeArtworkBrand(record) : null;
   },
 );
 
@@ -141,6 +152,9 @@ export const getSiteSettings = cache(
   async (): Promise<SiteSettingsRecord> => {
     const settings =
       await fetchFromSanity<SiteSettingsRecord | null>(settingsQuery);
-    return settings ?? fallbackSiteSettings;
+    return {
+      ...(settings ?? fallbackSiteSettings),
+      title: siteConfig.name,
+    };
   },
 );

@@ -59,25 +59,25 @@ export default async function Home() {
         <Link
           href="/about"
           className="hero__art hero__art--brand reveal"
-          aria-label="Meet Neha and Sneha, the makers behind TikDum DIY"
+          aria-label="Meet Neha and Sneha, the makers behind Tikdum DIY"
         >
           <div className="hero__image-wrap">
             <Image
               src="/images/brand/tikdum-diy-logo.webp"
-              alt="TikDum DIY — it is all about art and craft, by Neha and Sneha"
+              alt="Tikdum DIY — it is all about art and craft, by Neha and Sneha"
               className="hero__image"
               fill
               preload
               sizes="(max-width: 900px) calc(100vw - 2.5rem), 52vw"
             />
             <span className="hero__image-label" aria-hidden="true">
-              TikDum DIY · Art &amp; craft
+              Tikdum DIY · Art &amp; craft
             </span>
           </div>
           <div className="hero__caption">
             <div>
               <span>The studio</span>
-              <strong>TikDum DIY</strong>
+              <strong>Tikdum DIY</strong>
             </div>
             <p>Neha &amp; Sneha · India</p>
           </div>
@@ -122,7 +122,7 @@ export default async function Home() {
         <div className="makers-feature__visual">
           <Image
             src="/images/brand/tikdum-diy-founders.webp"
-            alt="Neha and Sneha, the makers behind TikDum DIY"
+            alt="Neha and Sneha, the makers behind Tikdum DIY"
             fill
             sizes="(max-width: 700px) calc(100vw - 2.2rem), min(92vw, 86rem)"
           />
@@ -135,7 +135,7 @@ export default async function Home() {
             </h2>
           </div>
           <p>
-            TikDum DIY is made by Neha and Sneha—a shared space for colourful
+            Tikdum DIY is made by Neha and Sneha—a shared space for colourful
             ideas, handmade experiments, and stories that make creativity feel
             welcoming.
           </p>
@@ -151,7 +151,7 @@ export default async function Home() {
             and feel more at home in our own lives.
           </blockquote>
           <Link href="/about" className="button button--light">
-            About TikDum <span aria-hidden="true">↗︎</span>
+            About Tikdum DIY <span aria-hidden="true">↗︎</span>
           </Link>
         </div>
         <div className="manifesto__mark" aria-hidden="true">

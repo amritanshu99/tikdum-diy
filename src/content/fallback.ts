@@ -9,7 +9,7 @@ export const fallbackArtworks: ArtworkRecord[] = [
     _id: "starter-earth-memory",
     title: "Earth Memory I",
     slug: "earth-memory-i",
-    artist: "TikDum Studio",
+    artist: "Tikdum DIY",
     year: 2026,
     medium: "Pigment, graphite and collage",
     featured: true,
@@ -21,7 +21,7 @@ export const fallbackArtworks: ArtworkRecord[] = [
     _id: "starter-after-rain",
     title: "After Rain",
     slug: "after-rain",
-    artist: "TikDum Studio",
+    artist: "Tikdum DIY",
     year: 2026,
     medium: "Oil and cold wax study",
     featured: true,
@@ -33,7 +33,7 @@ export const fallbackArtworks: ArtworkRecord[] = [
     _id: "starter-garden-glyphs",
     title: "Garden Glyphs",
     slug: "garden-glyphs",
-    artist: "TikDum Studio",
+    artist: "Tikdum DIY",
     year: 2026,
     medium: "Gouache, ink and cut paper",
     featured: false,
@@ -69,13 +69,13 @@ export const fallbackPosts: JournalPostRecord[] = [
     fallbackBody: [
       "A handmade image contains evidence of time. A brush hesitates, paper lifts at an edge, and one colour refuses to behave exactly like the last.",
       "These are not defects to be cleaned away. They are records of attention. They let us feel the distance between an idea and the hand that tried to give it form.",
-      "TikDum is interested in that distance—in making, revising, and sharing work whose surfaces still remember how they came to be.",
+      "Tikdum DIY is interested in that distance—in making, revising, and sharing work whose surfaces still remember how they came to be.",
     ],
   },
 ];
 
 export const fallbackSiteSettings: SiteSettingsRecord = {
-  title: "TikDum",
+  title: "Tikdum DIY",
   description:
     "An independent space for art, process, and the pleasure of making.",
 };

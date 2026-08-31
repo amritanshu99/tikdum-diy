@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       "contemporary art",
       "handmade art",
       "art journal",
-      "TikDum",
+      "Tikdum DIY",
     ],
     openGraph: {
       type: "website",
@@ -62,7 +62,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: "/images/brand/tikdum-diy-social.jpg",
           width: 1200,
           height: 630,
-          alt: "TikDum DIY — art and craft by Neha and Sneha",
+          alt: "Tikdum DIY — art and craft by Neha and Sneha",
         },
       ],
     },

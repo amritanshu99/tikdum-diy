@@ -172,6 +172,7 @@ img {
   font-style: italic;
   line-height: 0.86;
   letter-spacing: -0.06em;
+  white-space: nowrap;
 }
 
 .wordmark small {
@@ -951,7 +952,7 @@ img {
   margin: 0 0 clamp(2rem, 4vw, 3.5rem);
   color: rgba(255, 255, 255, 0.085);
   font-family: var(--serif);
-  font-size: clamp(7rem, 19vw, 19rem);
+  font-size: clamp(5.5rem, 13vw, 13rem);
   font-style: italic;
   font-weight: 500;
   letter-spacing: -0.09em;
@@ -2005,7 +2006,7 @@ img {
 
   .site-footer__wordmark {
     margin-bottom: 2.5rem;
-    font-size: clamp(6.2rem, 28vw, 10rem);
+    font-size: clamp(4.5rem, 19vw, 7rem);
   }
 
   .journal-row {
@@ -2074,7 +2075,7 @@ img {
   }
 
   .wordmark > span {
-    font-size: 2.05rem;
+    font-size: clamp(1.55rem, 8.5vw, 2rem);
   }
 
   .hero h1 {

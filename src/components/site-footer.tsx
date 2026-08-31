@@ -5,7 +5,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-footer__lead">
         <div>
-          <p className="eyebrow eyebrow--light">TikDum · India</p>
+          <p className="eyebrow eyebrow--light">Tikdum DIY · India</p>
           <p className="site-footer__note">
             Original art, joyful craft, and field notes from an evolving studio
             practice.
@@ -16,10 +16,10 @@ export function SiteFooter() {
         </p>
       </div>
       <p className="site-footer__wordmark" aria-hidden="true">
-        TikDum
+        Tikdum DIY
       </p>
       <div className="site-footer__bottom">
-        <Link href="/" className="footer-mark" aria-label="TikDum home">
+        <Link href="/" className="footer-mark" aria-label="Tikdum DIY home">
           T
         </Link>
         <nav aria-label="Footer navigation">
@@ -29,7 +29,7 @@ export function SiteFooter() {
         </nav>
         <div className="site-footer__meta">
           <span>www.tikdumdiy.com</span>
-          <span>© {new Date().getFullYear()} TikDum</span>
+          <span>© {new Date().getFullYear()} Tikdum DIY</span>
         </div>
         <a
           className="site-footer__credit"

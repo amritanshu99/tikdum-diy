@@ -6,7 +6,7 @@ import { getArtworks } from "@/sanity/lib/data";
 export const metadata: Metadata = {
   title: "Artworks",
   description:
-    "Explore original artworks and material studies from the TikDum collection.",
+    "Explore original artworks and material studies from the Tikdum DIY collection.",
   alternates: { canonical: "/artworks" },
 };
 

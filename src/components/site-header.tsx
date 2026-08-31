@@ -23,9 +23,9 @@ export function SiteHeader() {
         <span aria-hidden="true">✦</span>
       </div>
       <header className="site-header">
-        <Link href="/" className="wordmark" aria-label="TikDum home">
-          <span>TikDum</span>
-          <small>Art · Craft · DIY</small>
+        <Link href="/" className="wordmark" aria-label="Tikdum DIY home">
+          <span>Tikdum DIY</span>
+          <small>Art · Craft · Stories</small>
         </Link>
         <nav className="site-nav" aria-label="Primary navigation">
           {navigation.map((item) => (

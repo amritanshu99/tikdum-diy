@@ -39,7 +39,7 @@ there is one canonical version of every page.
 
 ## Phase 1: Direction and content
 
-- Review the initial TikDum name, cream/charcoal/vermilion palette, editorial
+- Review the Tikdum DIY name, cream/charcoal/vermilion palette, editorial
   typography, and tactile visual tone; refine them when the brand is finalized.
 - The first navigation includes Home, Artworks, Journal, and About. Add Contact
   after a public contact channel is chosen.
